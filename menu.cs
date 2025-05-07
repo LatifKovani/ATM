@@ -44,5 +44,21 @@ namespace atm
             deponim.Show();
             this.Hide();
         }
+
+        private void terheqja_Click(object sender, EventArgs e)
+        {
+            terheqje terheqja = new terheqje();
+            terheqja.Owner = this; // Set the owner to pass the parent form
+            terheqja.Show();
+            this.Hide();
+        }
+
+        private void bilanci_Click(object sender, EventArgs e)
+        {
+            bilanci bilanci = new bilanci();
+            bilanci.Owner = this;
+            bilanci.Show();
+            this.Hide();
+        }
     }
 }
