@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace atm
 {
@@ -17,8 +18,8 @@ namespace atm
         {
             InitializeComponent();
         }
+        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
 
-        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog=atmdb;Integrated Security=True;TrustServerCertificate=True";
 
         private void Kyqu_Click(object sender, EventArgs e)
         {

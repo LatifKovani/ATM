@@ -6,7 +6,7 @@ namespace atm
 {
     public partial class terheqje : Form
     {
-        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog=atmdb;Integrated Security=True;TrustServerCertificate=True";
+        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
 
         public terheqje()
         {

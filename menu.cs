@@ -60,5 +60,13 @@ namespace atm
             bilanci.Show();
             this.Hide();
         }
+
+        private void transfer_Click(object sender, EventArgs e)
+        {
+            dergo dergo = new dergo();
+            dergo.Owner = this;
+            dergo.Show();
+            this.Hide();
+        }
     }
 }

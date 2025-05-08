@@ -38,6 +38,8 @@
             bilanci = new Button();
             transfer = new Button();
             deponim = new Button();
+            kerko = new Button();
+            historiku = new Button();
             SuspendLayout();
             // 
             // labelWelcome
@@ -87,10 +89,10 @@
             // qkyqu
             // 
             qkyqu.Font = new Font("Segoe UI", 12F);
-            qkyqu.Location = new Point(341, 292);
+            qkyqu.Location = new Point(336, 292);
             qkyqu.Margin = new Padding(3, 2, 3, 2);
             qkyqu.Name = "qkyqu";
-            qkyqu.Size = new Size(150, 46);
+            qkyqu.Size = new Size(177, 46);
             qkyqu.TabIndex = 9;
             qkyqu.Text = "Çkyçu";
             qkyqu.UseVisualStyleBackColor = true;
@@ -99,10 +101,10 @@
             // terheqja
             // 
             terheqja.Font = new Font("Segoe UI", 12F);
-            terheqja.Location = new Point(491, 123);
+            terheqja.Location = new Point(593, 123);
             terheqja.Margin = new Padding(3, 2, 3, 2);
             terheqja.Name = "terheqja";
-            terheqja.Size = new Size(169, 46);
+            terheqja.Size = new Size(177, 46);
             terheqja.TabIndex = 10;
             terheqja.Text = "Tërheqje e mjeteve";
             terheqja.UseVisualStyleBackColor = true;
@@ -111,10 +113,10 @@
             // bilanci
             // 
             bilanci.Font = new Font("Segoe UI", 12F);
-            bilanci.Location = new Point(167, 123);
+            bilanci.Location = new Point(66, 123);
             bilanci.Margin = new Padding(3, 2, 3, 2);
             bilanci.Name = "bilanci";
-            bilanci.Size = new Size(169, 46);
+            bilanci.Size = new Size(177, 46);
             bilanci.TabIndex = 11;
             bilanci.Text = "Shiko bilancin";
             bilanci.UseVisualStyleBackColor = true;
@@ -123,31 +125,54 @@
             // transfer
             // 
             transfer.Font = new Font("Segoe UI", 12F);
-            transfer.Location = new Point(491, 215);
+            transfer.Location = new Point(66, 208);
             transfer.Margin = new Padding(3, 2, 3, 2);
             transfer.Name = "transfer";
-            transfer.Size = new Size(169, 46);
+            transfer.Size = new Size(177, 46);
             transfer.TabIndex = 12;
-            transfer.Text = "Transfer i mjeteve";
+            transfer.Text = "Dërgo Para";
             transfer.UseVisualStyleBackColor = true;
+            transfer.Click += transfer_Click;
             // 
             // deponim
             // 
             deponim.Font = new Font("Segoe UI", 12F);
-            deponim.Location = new Point(167, 215);
+            deponim.Location = new Point(336, 123);
             deponim.Margin = new Padding(3, 2, 3, 2);
             deponim.Name = "deponim";
-            deponim.Size = new Size(169, 46);
+            deponim.Size = new Size(177, 46);
             deponim.TabIndex = 13;
             deponim.Text = "Deponim i mjeteve";
             deponim.UseVisualStyleBackColor = true;
             deponim.Click += deponim_Click;
+            // 
+            // kerko
+            // 
+            kerko.Font = new Font("Segoe UI", 12F);
+            kerko.Location = new Point(336, 208);
+            kerko.Name = "kerko";
+            kerko.Size = new Size(177, 46);
+            kerko.TabIndex = 14;
+            kerko.Text = "Kërko Para";
+            kerko.UseVisualStyleBackColor = true;
+            // 
+            // historiku
+            // 
+            historiku.Font = new Font("Segoe UI", 12F);
+            historiku.Location = new Point(593, 208);
+            historiku.Name = "historiku";
+            historiku.Size = new Size(177, 46);
+            historiku.TabIndex = 15;
+            historiku.Text = "Historiku i transfereve";
+            historiku.UseVisualStyleBackColor = true;
             // 
             // menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(816, 407);
+            Controls.Add(historiku);
+            Controls.Add(kerko);
             Controls.Add(deponim);
             Controls.Add(transfer);
             Controls.Add(bilanci);
@@ -176,5 +201,7 @@
         private Button bilanci;
         private Button transfer;
         private Button deponim;
+        private Button kerko;
+        private Button historiku;
     }
 }
