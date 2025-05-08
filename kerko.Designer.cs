@@ -2,15 +2,8 @@
 {
     partial class kerko
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             messageTextBox = new TextBox();
@@ -33,69 +22,110 @@
             amountTextBox = new TextBox();
             requestButton = new Button();
             returnButton = new Button();
+            lblTitle = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
+
             // messageTextBox
-            // 
-            messageTextBox.Location = new Point(512, 121);
+            messageTextBox.Font = new Font("Segoe UI", 10F);
+            messageTextBox.Location = new Point(30, 180);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.PlaceholderText = "Shkruani mesazhin tuaj këtu...";
-            messageTextBox.Size = new Size(239, 200);
-            messageTextBox.TabIndex = 0;
-            // 
+            messageTextBox.Size = new Size(340, 120);
+            messageTextBox.TabIndex = 2;
+
             // recipientIbanTextBox
-            // 
-            recipientIbanTextBox.Location = new Point(143, 121);
-            recipientIbanTextBox.Multiline = true;
+            recipientIbanTextBox.Font = new Font("Segoe UI", 10F);
+            recipientIbanTextBox.Location = new Point(30, 80);
             recipientIbanTextBox.Name = "recipientIbanTextBox";
             recipientIbanTextBox.PlaceholderText = "IBAN i marrësit";
-            recipientIbanTextBox.Size = new Size(249, 43);
-            recipientIbanTextBox.TabIndex = 1;
-            recipientIbanTextBox.TextChanged += recipientIbanTextBox_TextChanged;
-            // 
+            recipientIbanTextBox.Size = new Size(340, 25);
+            recipientIbanTextBox.TabIndex = 0;
+
             // amountTextBox
-            // 
-            amountTextBox.Location = new Point(143, 278);
-            amountTextBox.Multiline = true;
+            amountTextBox.Font = new Font("Segoe UI", 10F);
+            amountTextBox.Location = new Point(30, 130);
             amountTextBox.Name = "amountTextBox";
             amountTextBox.PlaceholderText = "Shuma e kërkuar";
-            amountTextBox.Size = new Size(249, 43);
-            amountTextBox.TabIndex = 2;
-            // 
+            amountTextBox.Size = new Size(340, 25);
+            amountTextBox.TabIndex = 1;
+
             // requestButton
-            // 
-            requestButton.Location = new Point(612, 357);
+            requestButton.BackColor = Color.FromArgb(0, 123, 255);
+            requestButton.FlatAppearance.BorderSize = 0;
+            requestButton.FlatStyle = FlatStyle.Flat;
+            requestButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            requestButton.ForeColor = Color.White;
+            requestButton.Location = new Point(30, 320);
             requestButton.Name = "requestButton";
-            requestButton.Size = new Size(139, 46);
+            requestButton.Size = new Size(150, 40);
             requestButton.TabIndex = 3;
-            requestButton.Text = "Kërko";
-            requestButton.UseVisualStyleBackColor = true;
-            // 
+            requestButton.Text = "Dërgo Kërkesën";
+            requestButton.UseVisualStyleBackColor = false;
+
             // returnButton
-            // 
-            returnButton.Location = new Point(143, 357);
+            returnButton.BackColor = Color.FromArgb(108, 117, 125);
+            returnButton.FlatAppearance.BorderSize = 0;
+            returnButton.FlatStyle = FlatStyle.Flat;
+            returnButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            returnButton.ForeColor = Color.White;
+            returnButton.Location = new Point(220, 320);
             returnButton.Name = "returnButton";
-            returnButton.Size = new Size(139, 46);
+            returnButton.Size = new Size(150, 40);
             returnButton.TabIndex = 4;
             returnButton.Text = "Kthehu";
-            returnButton.UseVisualStyleBackColor = true;
-            // 
+            returnButton.UseVisualStyleBackColor = false;
+
+            // lblTitle
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(0, 123, 255);
+            lblTitle.Location = new Point(30, 30);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(187, 30);
+            lblTitle.TabIndex = 5;
+            lblTitle.Text = "Kërko Para nga";
+
+            // panel1
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblTitle);
+            panel1.Controls.Add(recipientIbanTextBox);
+            panel1.Controls.Add(amountTextBox);
+            panel1.Controls.Add(messageTextBox);
+            panel1.Controls.Add(requestButton);
+            panel1.Controls.Add(returnButton);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(400, 450);
+            panel1.TabIndex = 6;
+
+            // panel2
+            panel2.BackColor = Color.FromArgb(248, 249, 250);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(400, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(400, 450);
+            panel2.TabIndex = 7;
+
             // kerko
-            // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(returnButton);
-            Controls.Add(requestButton);
-            Controls.Add(amountTextBox);
-            Controls.Add(recipientIbanTextBox);
-            Controls.Add(messageTextBox);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "kerko";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kërko Para";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -105,5 +135,8 @@
         private TextBox amountTextBox;
         private Button requestButton;
         private Button returnButton;
+        private Label lblTitle;
+        private Panel panel1;
+        private Panel panel2;
     }
 }

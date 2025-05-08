@@ -40,6 +40,7 @@
             deponim = new Button();
             kerko = new Button();
             historiku = new Button();
+            mesazhet = new Button();
             SuspendLayout();
             // 
             // labelWelcome
@@ -89,7 +90,7 @@
             // qkyqu
             // 
             qkyqu.Font = new Font("Segoe UI", 12F);
-            qkyqu.Location = new Point(336, 292);
+            qkyqu.Location = new Point(593, 292);
             qkyqu.Margin = new Padding(3, 2, 3, 2);
             qkyqu.Name = "qkyqu";
             qkyqu.Size = new Size(177, 46);
@@ -155,6 +156,7 @@
             kerko.TabIndex = 14;
             kerko.Text = "Kërko Para";
             kerko.UseVisualStyleBackColor = true;
+            kerko.Click += kerko_Click;
             // 
             // historiku
             // 
@@ -167,11 +169,23 @@
             historiku.UseVisualStyleBackColor = true;
             historiku.Click += historiku_Click;
             // 
+            // mesazhet
+            // 
+            mesazhet.Font = new Font("Segoe UI", 12F);
+            mesazhet.Location = new Point(66, 292);
+            mesazhet.Name = "mesazhet";
+            mesazhet.Size = new Size(177, 46);
+            mesazhet.TabIndex = 16;
+            mesazhet.Text = "Mesazhet";
+            mesazhet.UseVisualStyleBackColor = true;
+            mesazhet.Click += mesazhet_Click;
+            // 
             // menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(816, 407);
+            Controls.Add(mesazhet);
             Controls.Add(historiku);
             Controls.Add(kerko);
             Controls.Add(deponim);
@@ -204,5 +218,6 @@
         private Button deponim;
         private Button kerko;
         private Button historiku;
+        private Button mesazhet;
     }
 }

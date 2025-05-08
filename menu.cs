@@ -74,5 +74,21 @@ namespace atm
             historiku historyForm = new historiku(UserIban);
             historyForm.ShowDialog();
         }
+
+        private void kerko_Click(object sender, EventArgs e)
+        {
+            kerko kerko = new kerko();
+            kerko.Owner = this; // Set the owner to pass the IBAN
+            kerko.Show();
+            this.Hide();
+        }
+
+        private void mesazhet_Click(object sender, EventArgs e)
+        {
+            mesazhet mesazhet = new mesazhet(userIban);
+            mesazhet.Owner = this; // Set the owner to pass the IBAN
+            mesazhet.Show();
+            this.Hide();
+        }
     }
 }
