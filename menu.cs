@@ -68,5 +68,11 @@ namespace atm
             dergo.Show();
             this.Hide();
         }
+
+        private void historiku_Click(object sender, EventArgs e)
+        {
+            historiku historyForm = new historiku(UserIban);
+            historyForm.ShowDialog();
+        }
     }
 }

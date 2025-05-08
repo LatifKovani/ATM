@@ -60,6 +60,7 @@
             messagebox.Location = new Point(504, 131);
             messagebox.Multiline = true;
             messagebox.Name = "messagebox";
+            messagebox.PlaceholderText = "Shkruani mesazhin tuaj këtu...";
             messagebox.Size = new Size(247, 180);
             messagebox.TabIndex = 2;
             // 
@@ -68,6 +69,7 @@
             marresiIBAN.Location = new Point(117, 128);
             marresiIBAN.Multiline = true;
             marresiIBAN.Name = "marresiIBAN";
+            marresiIBAN.PlaceholderText = "IBAN i marrësit";
             marresiIBAN.Size = new Size(238, 41);
             marresiIBAN.TabIndex = 3;
             // 
@@ -76,6 +78,7 @@
             shuma.Location = new Point(117, 270);
             shuma.Multiline = true;
             shuma.Name = "shuma";
+            shuma.PlaceholderText = "Shuma e kërkuar";
             shuma.Size = new Size(238, 41);
             shuma.TabIndex = 4;
             // 

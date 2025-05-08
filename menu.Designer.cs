@@ -165,6 +165,7 @@
             historiku.TabIndex = 15;
             historiku.Text = "Historiku i transfereve";
             historiku.UseVisualStyleBackColor = true;
+            historiku.Click += historiku_Click;
             // 
             // menu
             // 
