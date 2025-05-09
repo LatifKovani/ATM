@@ -43,7 +43,6 @@
             label1.Size = new Size(73, 20);
             label1.TabIndex = 0;
             label1.Text = "Llogaria: ";
-            label1.Click += label1_Click;
             // 
             // label2
             // 

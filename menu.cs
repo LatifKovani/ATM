@@ -12,9 +12,10 @@ namespace atm
 {
     public partial class menu : Form
     {
+        private Panel panelHeader;
         private Label labelWelcome;
         private string userEmri;
-        private string userIban; 
+        private string userIban;
 
         public menu(string emri, string iban)
         {
@@ -24,7 +25,7 @@ namespace atm
             labelWelcome.Text = $"Miresevini, {emri}";
         }
 
-        
+
         public string UserIban
         {
             get { return userIban; }
