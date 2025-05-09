@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace atm
 {
@@ -42,7 +43,7 @@ namespace atm
                 return;
             }
 
-            if (!decimal.TryParse(amountTextBox.Text, out decimal requestAmount) || requestAmount <= 0)
+            if (!decimal.TryParse(amountTextBox.Text, out decimal shumaKerkuar) || shumaKerkuar <= 0)
             {
                 MessageBox.Show("Ju lutem shkruani një shumë valide dhe pozitive!", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -50,10 +51,10 @@ namespace atm
 
             // Get current user's IBAN from owner form
             menu parentForm = this.Owner as menu;
-            string requesterIban = parentForm?.UserIban;
-            string recipientIban = recipientIbanTextBox.Text.Trim();
+            string kerkuesIban = parentForm?.UserIban;
+            string marresIban = recipientIbanTextBox.Text.Trim();
 
-            if (requesterIban == recipientIban)
+            if (kerkuesIban == marresIban)
             {
                 MessageBox.Show("Nuk mund t'i kërkoni para vetes suaj!", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -63,22 +64,22 @@ namespace atm
             string query = @"INSERT INTO kerkesat_para 
                     (iban, iban_marresit, shuma, mesazhi)
                     VALUES 
-                    (@RequesterIban, @RecipientIban, @Amount, @Message)";
+                    (@KerkuesIban, @MarresIban, @Shuma, @Message)";
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@RequesterIban", requesterIban);
-                    command.Parameters.AddWithValue("@RecipientIban", recipientIban);
-                    command.Parameters.AddWithValue("@Amount", requestAmount);
+                    command.Parameters.AddWithValue("@KerkuesIban", kerkuesIban);
+                    command.Parameters.AddWithValue("@MarresIban", marresIban);
+                    command.Parameters.AddWithValue("@Shuma", shumaKerkuar);
                     command.Parameters.AddWithValue("@Message", messageTextBox.Text.Trim());
 
                     connection.Open();
                     command.ExecuteNonQuery();
 
-                    MessageBox.Show($"Kërkesa për {requestAmount:N2}? u dërgua me sukses!",
+                    MessageBox.Show($"Kërkesa për {shumaKerkuar:N2}? u dërgua me sukses!",
                                   "Sukses",
                                   MessageBoxButtons.OK,
                                   MessageBoxIcon.Information);
@@ -94,29 +95,29 @@ namespace atm
             }
         }
 
-        private void CreateMoneyRequest(string requesterIban, string recipientIban, decimal amount, string message)
+        private void CreateMoneyRequest(string kerkuesIban, string marresIban, decimal shuma, string mesazhi)
         {
             string query = @"INSERT INTO kerkesat_para 
                             (iban, iban_marresit, shuma, mesazhi)
                             VALUES 
-                            (@RequesterIban, @RecipientIban, @Amount, @Message)";
+                            (@KerkuesIban, @MarresIban, @Shuma, @Mesazhi)";
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@RequesterIban", requesterIban);
-                    command.Parameters.AddWithValue("@RecipientIban", recipientIban);
-                    command.Parameters.AddWithValue("@Amount", amount);
-                    command.Parameters.AddWithValue("@Message", string.IsNullOrEmpty(message) ? DBNull.Value : message);
+                    command.Parameters.AddWithValue("@KerkuesIban", kerkuesIban);
+                    command.Parameters.AddWithValue("@MarresIban", marresIban);
+                    command.Parameters.AddWithValue("@Shuma", shuma);
+                    command.Parameters.AddWithValue("@Mesazhi", string.IsNullOrEmpty(mesazhi) ? DBNull.Value : mesazhi);
 
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show($"Kërkesa për {amount:N2} është dërguar me sukses tek llogaria me IBAN: {recipientIban}",
+                        MessageBox.Show($"Kërkesa për {shuma:N2} është dërguar me sukses tek llogaria me IBAN: {marresIban}",
                                       "Sukses",
                                       MessageBoxButtons.OK,
                                       MessageBoxIcon.Information);
@@ -173,9 +174,5 @@ namespace atm
             // Example: Auto-insert spaces every 4 characters
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

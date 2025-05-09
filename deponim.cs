@@ -22,14 +22,14 @@ namespace atm
             }
 
             // Check if the input is a valid number
-            if (!float.TryParse(textBox1.Text, out float depositAmount))
+            if (!float.TryParse(textBox1.Text, out float shumaDepozituar))
             {
                 MessageBox.Show("Ju lutem shkruani një shumë valide!", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Check if the amount is positive
-            if (depositAmount <= 0)
+            if (shumaDepozituar <= 0)
             {
                 MessageBox.Show("Ju lutem vendosni një shumë pozitive!", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -42,27 +42,27 @@ namespace atm
             {
                 connection.Open();
                 // 1. Update user balance
-                string updateBalanceQuery = "UPDATE perdoruesit SET bilanci = bilanci + @Amount WHERE iban = @Iban";
-                SqlCommand updateBalanceCmd = new SqlCommand(updateBalanceQuery, connection);
-                updateBalanceCmd.Parameters.AddWithValue("@Amount", depositAmount);
-                updateBalanceCmd.Parameters.AddWithValue("@Iban", userIban);
-                updateBalanceCmd.ExecuteNonQuery();
+                string updateBilancinQuery = "UPDATE perdoruesit SET bilanci = bilanci + @Shuma WHERE iban = @Iban";
+                SqlCommand updateBilancinCmd = new SqlCommand(updateBilancinQuery, connection);
+                updateBilancinCmd.Parameters.AddWithValue("@Shuma", shumaDepozituar);
+                updateBilancinCmd.Parameters.AddWithValue("@Iban", userIban);
+                updateBilancinCmd.ExecuteNonQuery();
 
                 // 2. Get user ID
-                string getUserIdQuery = "SELECT Id FROM perdoruesit WHERE iban = @Iban";
-                SqlCommand getUserIdCmd = new SqlCommand(getUserIdQuery, connection);
-                getUserIdCmd.Parameters.AddWithValue("@Iban", userIban);
-                int userId = (int)getUserIdCmd.ExecuteScalar();
+                string merrUserIdQuery = "SELECT Id FROM perdoruesit WHERE iban = @Iban";
+                SqlCommand merrUserIdCmd = new SqlCommand(merrUserIdQuery, connection);
+                merrUserIdCmd.Parameters.AddWithValue("@Iban", userIban);
+                int userId = (int)merrUserIdCmd.ExecuteScalar();
 
                 // 3. Insert into transaction log
-                string insertTransactionQuery = "INSERT INTO transaksionet (iban, tipi, shuma, Tdata, perdoruesiID) " +
+                string insertTransaksionQuery = "INSERT INTO transaksionet (iban, tipi, shuma, Tdata, perdoruesiID) " +
                                                "VALUES (@Iban, @Tipi, @Shuma, GETDATE(), @UserId)";
-                SqlCommand insertTransactionCmd = new SqlCommand(insertTransactionQuery, connection);
-                insertTransactionCmd.Parameters.AddWithValue("@Iban", userIban);
-                insertTransactionCmd.Parameters.AddWithValue("@Tipi", "Depozitim");
-                insertTransactionCmd.Parameters.AddWithValue("@Shuma", depositAmount);
-                insertTransactionCmd.Parameters.AddWithValue("@UserId", userId);
-                insertTransactionCmd.ExecuteNonQuery();
+                SqlCommand insertTransaksionCmd = new SqlCommand(insertTransaksionQuery, connection);
+                insertTransaksionCmd.Parameters.AddWithValue("@Iban", userIban);
+                insertTransaksionCmd.Parameters.AddWithValue("@Tipi", "Depozitim");
+                insertTransaksionCmd.Parameters.AddWithValue("@Shuma", shumaDepozituar);
+                insertTransaksionCmd.Parameters.AddWithValue("@UserId", userId);
+                insertTransaksionCmd.ExecuteNonQuery();
 
                 MessageBox.Show("Depozitimi u krye me sukses!");
             }
