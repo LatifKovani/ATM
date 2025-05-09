@@ -29,8 +29,7 @@
             this.colMesazhi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatusi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colApprove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDecline = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colVeprim = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelFooter = new System.Windows.Forms.Panel();
@@ -49,7 +48,7 @@
             this.requestsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.requestsDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.requestsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(0, 70, 130);
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
@@ -67,9 +66,8 @@
             this.colMesazhi,
             this.colData,
             this.colStatusi,
-            this.colApprove,
-            this.colDecline});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.colVeprim});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
@@ -85,6 +83,13 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(229, 243, 255);
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(229, 243, 255);
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.requestsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.requestsDataGridView.EnableHeadersVisualStyles = false;
             this.requestsDataGridView.GridColor = System.Drawing.Color.FromArgb(230, 230, 230);
@@ -94,7 +99,7 @@
             this.requestsDataGridView.RowHeadersVisible = false;
             this.requestsDataGridView.RowTemplate.Height = 35;
             this.requestsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.requestsDataGridView.Size = new System.Drawing.Size(760, 350);
+            this.requestsDataGridView.Size = new System.Drawing.Size(865, 350);
             this.requestsDataGridView.TabIndex = 0;
 
             // colId
@@ -109,11 +114,11 @@
             this.colNga.HeaderText = "Nga";
             this.colNga.Name = "colNga";
             this.colNga.ReadOnly = true;
-            this.colNga.Width = 150;
+            this.colNga.Width = 120;
 
             // colShuma
             this.colShuma.DataPropertyName = "Shuma";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.Format = "N2";
             this.colShuma.DefaultCellStyle = dataGridViewCellStyle4;
             this.colShuma.HeaderText = "Shuma";
@@ -144,34 +149,12 @@
             this.colStatusi.ReadOnly = true;
             this.colStatusi.Width = 100;
 
-            // colApprove
-            this.colApprove.HeaderText = "Veprim";
-            this.colApprove.Name = "colApprove";
-            this.colApprove.ReadOnly = true;
-            this.colApprove.Text = "Aprovo";
-            this.colApprove.UseColumnTextForButtonValue = true;
-            this.colApprove.Width = 80;
-            this.colApprove.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle()
-            {
-                BackColor = System.Drawing.Color.FromArgb(76, 175, 80),
-                ForeColor = System.Drawing.Color.White,
-                SelectionBackColor = System.Drawing.Color.FromArgb(76, 175, 80),
-                SelectionForeColor = System.Drawing.Color.White
-            };
-
-            // colDecline
-            this.colDecline.Name = "colDecline";
-            this.colDecline.ReadOnly = true;
-            this.colDecline.Text = "Refuzo";
-            this.colDecline.UseColumnTextForButtonValue = true;
-            this.colDecline.Width = 80;
-            this.colDecline.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle()
-            {
-                BackColor = System.Drawing.Color.FromArgb(244, 67, 54),
-                ForeColor = System.Drawing.Color.White,
-                SelectionBackColor = System.Drawing.Color.FromArgb(244, 67, 54),
-                SelectionForeColor = System.Drawing.Color.White
-            };
+            // colVeprim
+            this.colVeprim.HeaderText = "Veprim";
+            this.colVeprim.Name = "colVeprim";
+            this.colVeprim.ReadOnly = true;
+            this.colVeprim.Width = 160;
+            // Note: The buttons will be added programmatically in the code-behind file
 
             // panelHeader
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(0, 70, 130);
@@ -190,7 +173,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(187, 30);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Kërkesat për Para";
+            this.lblTitle.Text = "Mesazhet";
 
             // panelFooter
             this.panelFooter.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
@@ -212,7 +195,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 35);
             this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Rifresko";
             this.btnRefresh.UseVisualStyleBackColor = false;
 
             // btnReturn
@@ -220,19 +203,19 @@
             this.btnReturn.FlatAppearance.BorderSize = 0;
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.Location = new System.Drawing.Point(50, 15);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(100, 35);
             this.btnReturn.TabIndex = 3;
             this.btnReturn.Text = "Kthehu";
+            this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.UseVisualStyleBackColor = false;
 
             // mesazhet
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.ClientSize = new System.Drawing.Size(837, 490);
             this.Controls.Add(this.requestsDataGridView);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelFooter);
@@ -257,8 +240,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colMesazhi;
         private System.Windows.Forms.DataGridViewTextBoxColumn colData;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatusi;
-        private System.Windows.Forms.DataGridViewButtonColumn colApprove;
-        private System.Windows.Forms.DataGridViewButtonColumn colDecline;
+        private System.Windows.Forms.DataGridViewButtonColumn colVeprim;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelFooter;

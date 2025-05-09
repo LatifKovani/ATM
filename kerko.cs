@@ -82,7 +82,6 @@ namespace atm
                                   "Sukses",
                                   MessageBoxButtons.OK,
                                   MessageBoxIcon.Information);
-                    this.Close();
                 }
             }
             catch (SqlException ex)
@@ -172,6 +171,11 @@ namespace atm
         {
             // Optional: Add IBAN formatting as user types
             // Example: Auto-insert spaces every 4 characters
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

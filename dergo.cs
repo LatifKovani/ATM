@@ -30,14 +30,14 @@ namespace atm
             }
 
             // Check if the amount is a valid number
-            if (!float.TryParse(shuma.Text, out float transferAmount))
+            if (!float.TryParse(shuma.Text, out float shumaTransfer))
             {
                 MessageBox.Show("Ju lutem shkruani një shumë valide!");
                 return;
             }
 
             // Check if the amount is positive
-            if (transferAmount <= 0)
+            if (shumaTransfer <= 0)
             {
                 MessageBox.Show("Ju lutem vendosni një shumë pozitive!");
                 return;
@@ -45,11 +45,11 @@ namespace atm
 
             // Get the current user's IBAN from the menu form
             menu parentForm = this.Owner as menu;
-            string senderIban = parentForm.UserIban;
-            string recipientIban = marresiIBAN.Text.Trim();
+            string derguesiIban = parentForm.UserIban;
+            string marresiIban = marresiIBAN.Text.Trim();
 
             // Don't allow transfer to the same account
-            if (senderIban == recipientIban)
+            if (derguesiIban == marresiIban)
             {
                 MessageBox.Show("Nuk mund të transferoni para në llogarinë tuaj!");
                 return;
@@ -62,24 +62,24 @@ namespace atm
                     connection.Open();
 
                     // Check if recipient IBAN exists
-                    string checkRecipientQuery = "SELECT COUNT(*) FROM perdoruesit WHERE iban = @RecipientIban";
-                    SqlCommand checkRecipientCmd = new SqlCommand(checkRecipientQuery, connection);
-                    checkRecipientCmd.Parameters.AddWithValue("@RecipientIban", recipientIban);
-                    int recipientExists = (int)checkRecipientCmd.ExecuteScalar();
+                    string kontrolloMarresIbanQuery = "SELECT COUNT(*) FROM perdoruesit WHERE iban = @MarresiIban";
+                    SqlCommand kontrolloMarresIbanCmd = new SqlCommand(kontrolloMarresIbanQuery, connection);
+                    kontrolloMarresIbanCmd.Parameters.AddWithValue("@MarresiIBAN", marresiIban);
+                    int marresiEkziston = (int)kontrolloMarresIbanCmd.ExecuteScalar();
 
-                    if (recipientExists == 0)
+                    if (marresiEkziston == 0)
                     {
                         MessageBox.Show("IBAN-i i marrësit nuk ekziston!");
                         return;
                     }
 
                     // Check if sender has sufficient funds
-                    string checkBalanceQuery = "SELECT bilanci FROM perdoruesit WHERE iban = @SenderIban";
-                    SqlCommand checkBalanceCmd = new SqlCommand(checkBalanceQuery, connection);
-                    checkBalanceCmd.Parameters.AddWithValue("@SenderIban", senderIban);
-                    float currentBalance = Convert.ToSingle(checkBalanceCmd.ExecuteScalar());
+                    string kontrolloBilancQuery = "SELECT bilanci FROM perdoruesit WHERE iban = @DerguesiIban";
+                    SqlCommand kontrolloBilancCmd = new SqlCommand(kontrolloBilancQuery, connection);
+                    kontrolloBilancCmd.Parameters.AddWithValue("@DerguesiIban", derguesiIban);
+                    float bilanciAktual = Convert.ToSingle(kontrolloBilancCmd.ExecuteScalar());
 
-                    if (currentBalance < transferAmount)
+                    if (bilanciAktual < shumaTransfer)
                     {
                         MessageBox.Show("Ju nuk keni mjete të mjaftueshme për këtë transferim!");
                         return;
@@ -89,47 +89,47 @@ namespace atm
                     string userMessage = messagebox.Text.Trim();
 
                     // Start a transaction to ensure atomicity
-                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    using (SqlTransaction transaksioni = connection.BeginTransaction())
                     {
                         try
                         {
                             // 1. Deduct amount from sender
-                            string deductQuery = "UPDATE perdoruesit SET bilanci = bilanci - @Amount WHERE iban = @SenderIban";
-                            SqlCommand deductCmd = new SqlCommand(deductQuery, connection, transaction);
-                            deductCmd.Parameters.AddWithValue("@Amount", transferAmount);
-                            deductCmd.Parameters.AddWithValue("@SenderIban", senderIban);
+                            string deductQuery = "UPDATE perdoruesit SET bilanci = bilanci - @Shuma WHERE iban = @DerguesiIban";
+                            SqlCommand deductCmd = new SqlCommand(deductQuery, connection, transaksioni);
+                            deductCmd.Parameters.AddWithValue("@Shuma", shumaTransfer);
+                            deductCmd.Parameters.AddWithValue("@DerguesiIBAN", derguesiIban);
                             deductCmd.ExecuteNonQuery();
 
                             // 2. Add amount to recipient
-                            string addQuery = "UPDATE perdoruesit SET bilanci = bilanci + @Amount WHERE iban = @RecipientIban";
-                            SqlCommand addCmd = new SqlCommand(addQuery, connection, transaction);
-                            addCmd.Parameters.AddWithValue("@Amount", transferAmount);
-                            addCmd.Parameters.AddWithValue("@RecipientIban", recipientIban);
+                            string addQuery = "UPDATE perdoruesit SET bilanci = bilanci + @Shuma WHERE iban = @MarresiIBAN";
+                            SqlCommand addCmd = new SqlCommand(addQuery, connection, transaksioni);
+                            addCmd.Parameters.AddWithValue("@Shuma", shumaTransfer);
+                            addCmd.Parameters.AddWithValue("@MarresiIBAN", marresiIban);
                             addCmd.ExecuteNonQuery();
 
                             // 3. Get sender user ID
-                            string getSenderIdQuery = "SELECT Id FROM perdoruesit WHERE iban = @SenderIban";
-                            SqlCommand getSenderIdCmd = new SqlCommand(getSenderIdQuery, connection, transaction);
-                            getSenderIdCmd.Parameters.AddWithValue("@SenderIban", senderIban);
-                            int senderId = (int)getSenderIdCmd.ExecuteScalar();
+                            string merrDerguesIdQuery = "SELECT Id FROM perdoruesit WHERE iban = @DerguesiIban";
+                            SqlCommand merrDerguesIdCmd = new SqlCommand(merrDerguesIdQuery, connection, transaksioni);
+                            merrDerguesIdCmd.Parameters.AddWithValue("@DerguesiIban", derguesiIban);
+                            int DerguesId = (int)merrDerguesIdCmd.ExecuteScalar();
 
                             // 4. Insert into transaction log for sender (outgoing transfer)
-                            string insertSenderTransactionQuery = "INSERT INTO transaksionet (iban, tipi, shuma, iban_marresit, mesazhi, Tdata, perdoruesiID) " +
-                                                   "VALUES (@SenderIban, @Tipi, @Shuma, @RecipientIban, @Mesazhi, GETDATE(), @SenderId)";
-                            SqlCommand insertSenderTransactionCmd = new SqlCommand(insertSenderTransactionQuery, connection, transaction);
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@SenderIban", senderIban);
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@Tipi", "Transferim");
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@Shuma", transferAmount);
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@RecipientIban", recipientIban);
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@Mesazhi", userMessage);
-                            insertSenderTransactionCmd.Parameters.AddWithValue("@SenderId", senderId);
-                            insertSenderTransactionCmd.ExecuteNonQuery();
+                            string insertoTransaksionDerguesitQuery = "INSERT INTO transaksionet (iban, tipi, shuma, iban_marresit, mesazhi, Tdata, perdoruesiID) " +
+                                                   "VALUES (@DerguesiIban, @Tipi, @Shuma, @MarresiIBAN, @Mesazhi, GETDATE(), @DerguesId)";
+                            SqlCommand insertoTransaksionDerguesitCmd = new SqlCommand(insertoTransaksionDerguesitQuery, connection, transaksioni);
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@DerguesiIban", derguesiIban);
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@Tipi", "Transferim");
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@Shuma", shumaTransfer);
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@MarresiIBAN", marresiIban);
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@Mesazhi", userMessage);
+                            insertoTransaksionDerguesitCmd.Parameters.AddWithValue("@DerguesId", DerguesId);
+                            insertoTransaksionDerguesitCmd.ExecuteNonQuery();
 
                             // Commit the transaction
-                            transaction.Commit();
+                            transaksioni.Commit();
 
                             // Show success message in a MessageBox
-                            MessageBox.Show($"Transferimi u krye me sukses! Ju keni transferuar {transferAmount} tek llogaria me IBAN: {recipientIban}");
+                            MessageBox.Show($"Transferimi u krye me sukses! Ju keni transferuar {shumaTransfer} tek llogaria me IBAN: {marresiIBAN}");
 
                             // Clear the input fields
                             marresiIBAN.Text = "";
@@ -139,7 +139,7 @@ namespace atm
                         catch (Exception ex)
                         {
                             // Roll back the transaction if something goes wrong
-                            transaction.Rollback();
+                            transaksioni.Rollback();
                             MessageBox.Show("Ka ndodhur një gabim gjatë transferimit: " + ex.Message);
                         }
                     }

@@ -23,6 +23,7 @@ namespace atm
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle centerCellStyle = new System.Windows.Forms.DataGridViewCellStyle(); // New style for centering
 
             transactionsDataGridView = new DataGridView();
             returnButton = new Button();
@@ -54,7 +55,7 @@ namespace atm
 
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle2.Padding = new Padding(5);
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(229, 243, 255);
@@ -64,12 +65,22 @@ namespace atm
 
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(245, 245, 245);
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(229, 243, 255);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             transactionsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+
+            // Create a centered cell style
+            centerCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            centerCellStyle.BackColor = Color.White;
+            centerCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            centerCellStyle.ForeColor = Color.FromArgb(64, 64, 64);
+            centerCellStyle.Padding = new Padding(5);
+            centerCellStyle.SelectionBackColor = Color.FromArgb(229, 243, 255);
+            centerCellStyle.SelectionForeColor = Color.FromArgb(64, 64, 64);
+            centerCellStyle.WrapMode = DataGridViewTriState.False;
 
             transactionsDataGridView.EnableHeadersVisualStyles = false;
             transactionsDataGridView.GridColor = Color.FromArgb(230, 230, 230);
@@ -81,6 +92,18 @@ namespace atm
             transactionsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             transactionsDataGridView.Size = new Size(760, 350);
             transactionsDataGridView.TabIndex = 0;
+
+            // After initializing the DataGridView, you'll need to set the cell style for the "Shuma" column
+            // This is typically done in the TransactionHistory_Load event or similar
+            // But for demonstration, I'll show how to do it here:
+            transactionsDataGridView.CellFormatting += (sender, e) =>
+            {
+                if (transactionsDataGridView.Columns[e.ColumnIndex].Name == "Shuma" && e.Value != null)
+                {
+                    e.CellStyle = centerCellStyle;
+                    e.Value = string.Format("{0:N}", Convert.ToDecimal(e.Value)); // Optional: format as number
+                }
+            };
 
             // returnButton
             returnButton.BackColor = Color.FromArgb(0, 70, 130);

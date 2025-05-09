@@ -16,15 +16,17 @@ namespace atm
             InitializeComponent();
             currentUserIban = userIban;
             this.Load += Mesazhet_Load;
-            requestsDataGridView.CellContentClick += RequestsDataGridView_CellContentClick;
             btnRefresh.Click += BtnRefresh_Click;
             btnReturn.Click += BtnReturn_Click;
+
+            // Set up the custom button rendering and click handling for Veprim column
+            requestsDataGridView.CellPainting += RequestsDataGridView_CellPainting;
+            requestsDataGridView.CellClick += RequestsDataGridView_CellClick;
         }
 
         private void Mesazhet_Load(object sender, EventArgs e)
         {
             LoadRequests();
-            StyleGridButtons();
         }
 
         private void LoadRequests()
@@ -59,49 +61,109 @@ namespace atm
             }
         }
 
-        private void StyleGridButtons()
+        private void RequestsDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            foreach (DataGridViewRow row in requestsDataGridView.Rows)
+            // Check if it's the Veprim column but not the header
+            if (e.ColumnIndex == requestsDataGridView.Columns["colVeprim"].Index && e.RowIndex >= 0)
             {
-                row.Cells["colApprove"].Style.BackColor = Color.FromArgb(76, 175, 80);
-                row.Cells["colApprove"].Style.ForeColor = Color.White;
-                row.Cells["colDecline"].Style.BackColor = Color.FromArgb(244, 67, 54);
-                row.Cells["colDecline"].Style.ForeColor = Color.White;
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+                // Define button rectangles (left half for Approve, right half for Decline)
+                Rectangle approveRect = new Rectangle(
+                    e.CellBounds.X + 5,
+                    e.CellBounds.Y + 5,
+                    (e.CellBounds.Width / 2) - 10,
+                    e.CellBounds.Height - 10);
+
+                Rectangle declineRect = new Rectangle(
+                    e.CellBounds.X + (e.CellBounds.Width / 2) + 5,
+                    e.CellBounds.Y + 5,
+                    (e.CellBounds.Width / 2) - 10,
+                    e.CellBounds.Height - 10);
+
+                // Check if the status is PENDING to determine if buttons should be active
+                string status = e.RowIndex >= 0 && requestsDataGridView.Rows[e.RowIndex].Cells["colStatusi"].Value != null
+                    ? requestsDataGridView.Rows[e.RowIndex].Cells["colStatusi"].Value.ToString()
+                    : "";
+
+                bool isActive = status == "PENDING";
+
+                // Draw Approve button (green)
+                using (var approveButtonBrush = new SolidBrush(isActive ? Color.FromArgb(76, 175, 80) : Color.FromArgb(200, 200, 200)))
+                using (var buttonTextBrush = new SolidBrush(Color.White))
+                using (var buttonFont = new Font("Segoe UI", 9))
+                {
+                    e.Graphics.FillRectangle(approveButtonBrush, approveRect);
+
+                    // Center the text
+                    SizeF textSize = e.Graphics.MeasureString("Aprovo", buttonFont);
+                    PointF textPos = new PointF(
+                        approveRect.X + (approveRect.Width - textSize.Width) / 2,
+                        approveRect.Y + (approveRect.Height - textSize.Height) / 2);
+
+                    e.Graphics.DrawString("Aprovo", buttonFont, buttonTextBrush, textPos);
+                }
+
+                // Draw Decline button (red)
+                using (var declineButtonBrush = new SolidBrush(isActive ? Color.FromArgb(244, 67, 54) : Color.FromArgb(200, 200, 200)))
+                using (var buttonTextBrush = new SolidBrush(Color.White))
+                using (var buttonFont = new Font("Segoe UI", 9))
+                {
+                    e.Graphics.FillRectangle(declineButtonBrush, declineRect);
+
+                    // Center the text
+                    SizeF textSize = e.Graphics.MeasureString("Refuzo", buttonFont);
+                    PointF textPos = new PointF(
+                        declineRect.X + (declineRect.Width - textSize.Width) / 2,
+                        declineRect.Y + (declineRect.Height - textSize.Height) / 2);
+
+                    e.Graphics.DrawString("Refuzo", buttonFont, buttonTextBrush, textPos);
+                }
+
+                e.Handled = true;
             }
         }
 
-        private void RequestsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void RequestsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-
-            var grid = (DataGridView)sender;
-            int requestId = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["colId"].Value);
-            string status = grid.Rows[e.RowIndex].Cells["colStatusi"].Value?.ToString() ?? "";
-
-            if (grid.Columns[e.ColumnIndex].Name == "colApprove")
+            // Check if it's the Veprim column and not the header row
+            if (e.ColumnIndex == requestsDataGridView.Columns["colVeprim"].Index && e.RowIndex >= 0)
             {
+                // Get the status to check if it's PENDING
+                string status = requestsDataGridView.Rows[e.RowIndex].Cells["colStatusi"].Value?.ToString() ?? "";
+
                 if (status != "PENDING")
                 {
                     MessageBox.Show("Mund të veproni vetëm në kërkesa të papërgjigjura!", "Kujdes");
                     return;
                 }
 
-                if (MessageBox.Show("Aprovo kërkesën?", "Konfirmim", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    ApproveRequest(requestId);
-                }
-            }
-            else if (grid.Columns[e.ColumnIndex].Name == "colDecline")
-            {
-                if (status != "PENDING")
-                {
-                    MessageBox.Show("Mund të veproni vetëm në kërkesa të papërgjigjura!", "Kujdes");
-                    return;
-                }
+                // Get the cell boundaries
+                Rectangle cellBounds = requestsDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
 
-                if (MessageBox.Show("Refuzo kërkesën?", "Konfirmim", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                // Get the mouse position relative to the cell
+                Point relativePoint = requestsDataGridView.PointToClient(Cursor.Position);
+                relativePoint = new Point(relativePoint.X - cellBounds.X, relativePoint.Y - cellBounds.Y);
+
+                // Get the request ID
+                int requestId = Convert.ToInt32(requestsDataGridView.Rows[e.RowIndex].Cells["colId"].Value);
+
+                // Check if click was in left or right half of the cell
+                if (relativePoint.X < cellBounds.Width / 2)
                 {
-                    DeclineRequest(requestId);
+                    // Approve button clicked
+                    if (MessageBox.Show("Aprovo kërkesën?", "Konfirmim", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        ApproveRequest(requestId);
+                    }
+                }
+                else
+                {
+                    // Decline button clicked
+                    if (MessageBox.Show("Refuzo kërkesën?", "Konfirmim", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        DeclineRequest(requestId);
+                    }
                 }
             }
         }

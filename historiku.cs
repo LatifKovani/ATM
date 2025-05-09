@@ -21,6 +21,15 @@ namespace atm
         private void TransactionHistory_Load(object sender, EventArgs e)
         {
             LoadTransactionHistory();
+            if (transactionsDataGridView.Columns.Contains("Shuma"))
+            {
+                DataGridViewColumn shumaColumn = transactionsDataGridView.Columns["Shuma"];
+                shumaColumn.DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    Format = "N2"  // Formats as number with 2 decimal places
+                };
+            }
         }
 
         private void LoadTransactionHistory()
