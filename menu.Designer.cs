@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menu));
             labelWelcome = new Label();
             label1 = new Label();
             label2 = new Label();
@@ -41,6 +42,8 @@
             kerko = new Button();
             historiku = new Button();
             mesazhet = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // labelWelcome
@@ -160,12 +163,13 @@
             // 
             // historiku
             // 
-            historiku.Font = new Font("Segoe UI", 12F);
+            historiku.Font = new Font("Segoe UI", 10F);
             historiku.Location = new Point(593, 208);
             historiku.Name = "historiku";
             historiku.Size = new Size(177, 46);
             historiku.TabIndex = 15;
             historiku.Text = "Historiku i transfereve";
+            historiku.TextAlign = ContentAlignment.MiddleLeft;
             historiku.UseVisualStyleBackColor = true;
             historiku.Click += historiku_Click;
             // 
@@ -180,11 +184,21 @@
             mesazhet.UseVisualStyleBackColor = true;
             mesazhet.Click += mesazhet_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.Location = new Point(738, 217);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.TabIndex = 17;
+            pictureBox1.TabStop = false;
+            // 
             // menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(816, 407);
+            Controls.Add(pictureBox1);
             Controls.Add(mesazhet);
             Controls.Add(historiku);
             Controls.Add(kerko);
@@ -202,6 +216,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "menu";
             Text = "Tërheqje e mjeteve";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -219,5 +234,6 @@
         private Button kerko;
         private Button historiku;
         private Button mesazhet;
+        private PictureBox pictureBox1;
     }
 }
