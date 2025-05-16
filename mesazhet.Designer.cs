@@ -37,7 +37,7 @@
             requestsDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(217, 217, 217);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new Font("SF Pro Regular", 9F);
             dataGridViewCellStyle1.ForeColor = Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(229, 243, 255);
             dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(64, 64, 64);
@@ -51,7 +51,7 @@
             requestsDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(200, 30, 30);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new Font("SF Pro Semibold", 9.75F, FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.Padding = new Padding(5);
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 20, 20);
@@ -63,7 +63,7 @@
             requestsDataGridView.Columns.AddRange(new DataGridViewColumn[] { colVeprim });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(217, 217, 217);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.Font = new Font("SF Pro Regular", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(64, 64, 64);
             dataGridViewCellStyle3.Padding = new Padding(5);
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(217, 217, 217);
@@ -72,15 +72,14 @@
             requestsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             requestsDataGridView.EnableHeadersVisualStyles = false;
             requestsDataGridView.GridColor = Color.FromArgb(230, 230, 230);
-            requestsDataGridView.Location = new Point(20, 71);
-            requestsDataGridView.Margin = new Padding(3, 4, 3, 4);
+            requestsDataGridView.Location = new Point(18, 53);
             requestsDataGridView.Name = "requestsDataGridView";
             requestsDataGridView.ReadOnly = true;
             requestsDataGridView.RowHeadersVisible = false;
             requestsDataGridView.RowHeadersWidth = 51;
             requestsDataGridView.RowTemplate.Height = 35;
             requestsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            requestsDataGridView.Size = new Size(1080, 468);
+            requestsDataGridView.Size = new Size(1076, 456);
             requestsDataGridView.TabIndex = 0;
             // 
             // colVeprim
@@ -97,9 +96,11 @@
             panel1.Controls.Add(requestsDataGridView);
             panel1.Controls.Add(btnReturn);
             panel1.Controls.Add(btnRefresh);
+            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1120, 619);
+            panel1.Size = new Size(1111, 576);
             panel1.TabIndex = 6;
             // 
             // label1
@@ -107,55 +108,57 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 19F);
-            label1.Location = new Point(20, 9);
+            label1.Font = new Font("SF Pro Regular", 19F);
+            label1.Location = new Point(18, 9);
             label1.Name = "label1";
-            label1.Size = new Size(156, 45);
+            label1.Size = new Size(126, 36);
             label1.TabIndex = 4;
             label1.Text = "Mesazhet";
             // 
             // btnReturn
             // 
-            btnReturn.BackColor = Color.FromArgb(200, 200, 200);
+            btnReturn.Anchor = AnchorStyles.None;
+            btnReturn.BackColor = Color.FromArgb(180, 190, 201);
             btnReturn.FlatAppearance.BorderSize = 0;
+            btnReturn.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 190, 201);
+            btnReturn.FlatAppearance.MouseOverBackColor = Color.FromArgb(161, 171, 181);
             btnReturn.FlatStyle = FlatStyle.Flat;
-            btnReturn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnReturn.ForeColor = Color.White;
-            btnReturn.Location = new Point(20, 556);
-            btnReturn.Margin = new Padding(3, 4, 3, 4);
+            btnReturn.Font = new Font("SF Pro Regular", 14F);
+            btnReturn.ForeColor = Color.Black;
+            btnReturn.Location = new Point(18, 526);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(140, 50);
+            btnReturn.Size = new Size(164, 40);
             btnReturn.TabIndex = 3;
             btnReturn.Text = "Kthehu";
             btnReturn.UseVisualStyleBackColor = false;
             // 
             // btnRefresh
             // 
-            btnRefresh.Anchor = AnchorStyles.Right;
-            btnRefresh.BackColor = Color.FromArgb(0, 120, 215);
+            btnRefresh.Anchor = AnchorStyles.None;
+            btnRefresh.BackColor = Color.FromArgb(180, 190, 201);
             btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 190, 201);
+            btnRefresh.FlatAppearance.MouseOverBackColor = Color.FromArgb(161, 171, 181);
             btnRefresh.FlatStyle = FlatStyle.Flat;
-            btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(968, 556);
-            btnRefresh.Margin = new Padding(3, 4, 3, 4);
+            btnRefresh.Font = new Font("SF Pro Regular", 14F);
+            btnRefresh.ForeColor = Color.Black;
+            btnRefresh.Location = new Point(930, 526);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(140, 50);
+            btnRefresh.Size = new Size(164, 40);
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Rifresko";
             btnRefresh.UseVisualStyleBackColor = false;
             // 
             // mesazhet
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1120, 619);
+            ClientSize = new Size(1111, 576);
             Controls.Add(panel1);
-            Font = new Font("Segoe UI", 9F);
-            Margin = new Padding(3, 4, 3, 4);
-            MinimumSize = new Size(800, 500);
+            Font = new Font("SF Pro Regular", 9F);
+            MinimumSize = new Size(702, 385);
             Name = "mesazhet";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mesazhet";

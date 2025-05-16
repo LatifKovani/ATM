@@ -17,7 +17,7 @@ namespace atm
         {
             InitializeComponent();
         }
-        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\LENOVO\\Documents\\atmoop.mdf;Integrated Security=True;Connect Timeout=30";
+        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
 
 
         private void Kyqu_Click(object sender, EventArgs e)
@@ -61,7 +61,8 @@ namespace atm
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+        {   
+            
             regjistrimi regjistrimi = new regjistrimi();
             regjistrimi.Show();
             this.Hide();

@@ -56,17 +56,10 @@ namespace atm
 
         private void bilanci_Click(object sender, EventArgs e)
         {
-            if (bilanci == null || bilanci.IsDisposed)
-            {
-                bilanci bilanci = new bilanci();
-                bilanci.Owner = this;
-                bilanci.Show();
-                this.Hide();
-            }
-            else
-            {
-                bilanci.Show(); // If it's not disposed, just show it
-            }
+            bilanci bilanci = new bilanci();
+            bilanci.Owner = this;
+            bilanci.Show();
+            this.Hide();
         }
 
         private void transfer_Click(object sender, EventArgs e)
@@ -98,5 +91,6 @@ namespace atm
             mesazhet.Show();
             this.Hide();
         }
+
     }
 }
