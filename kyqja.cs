@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace atm
+{
+    public partial class kyqja : Form
+    {
+        public kyqja()
+        {
+            InitializeComponent();
+        }
+        string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
+
+
+        private void Kyqu_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                try
+                {
+                    string query = "SELECT emri, iban FROM perdoruesit WHERE iban = @Iban AND pin = @Pin";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Iban", textBox1.Text);
+                        command.Parameters.AddWithValue("@Pin", textBox2.Text);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string emri = reader["emri"].ToString();
+                                string iban = reader["iban"].ToString();
+
+                                // Pass both name and IBAN to the menu form
+                                menu menuForm = new menu(emri, iban);
+                                menuForm.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Iban ose PIN i gabuar.");
+                                textBox1.Clear();
+                                textBox2.Clear();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ndodhi nje gabim: " + ex.Message);
+                }
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {   
+            
+            regjistrimi regjistrimi = new regjistrimi();
+            regjistrimi.Show();
+            this.Hide();
+        }
+    }
+}
