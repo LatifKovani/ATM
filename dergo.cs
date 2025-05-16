@@ -12,7 +12,6 @@ namespace atm
         {
             InitializeComponent();
         }
-
         private void send_Click(object sender, EventArgs e)
         {
             // Validate recipient IBAN

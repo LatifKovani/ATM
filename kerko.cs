@@ -21,7 +21,7 @@ namespace atm
         }
         private void AmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow only numbers, decimal point, and control characters
+            // Allow only numbers, decimal point
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;

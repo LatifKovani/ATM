@@ -125,7 +125,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
-
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

@@ -171,7 +171,6 @@ namespace atm
             ResumeLayout(false);
         }
         #endregion
-
         private DataGridView transactionsDataGridView;
         private Button returnButton;
         private Label lblTitle;

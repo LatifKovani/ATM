@@ -14,7 +14,6 @@
         }
 
         #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();

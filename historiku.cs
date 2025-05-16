@@ -75,7 +75,6 @@ namespace atm
                               MessageBoxIcon.Error);
             }
         }
-
         private void FormatDataGridView()
         {
             if (transactionsDataGridView.Columns.Contains("Shuma"))

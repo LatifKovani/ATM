@@ -67,7 +67,6 @@ namespace atm
                 MessageBox.Show("Depozitimi u krye me sukses!");
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             // Check if Owner is set and is a menu form

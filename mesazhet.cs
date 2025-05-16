@@ -10,7 +10,6 @@ namespace atm
     {
         string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
         string currentUserIban;
-
         public mesazhet(string userIban)
         {
             InitializeComponent();

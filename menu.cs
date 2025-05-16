@@ -83,7 +83,6 @@ namespace atm
             kerko.Show();
             this.Hide();
         }
-
         private void mesazhet_Click(object sender, EventArgs e)
         {
             mesazhet mesazhet = new mesazhet(userIban);

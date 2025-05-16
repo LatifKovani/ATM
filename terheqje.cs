@@ -67,7 +67,7 @@ namespace atm
                 merrUserIdCmd.Parameters.AddWithValue("@Iban", userIban);
                 int userId = (int)merrUserIdCmd.ExecuteScalar();
 
-                // 5. Record transaction
+                // 5. Record transaksion
                 string insertTransaksionQuery = "INSERT INTO transaksionet (iban, tipi, shuma, Tdata, perdoruesiID) " +
                                               "VALUES (@Iban, @Tipi, @Shuma, GETDATE(), @UserId)";
                 SqlCommand insertTransaksionCmd = new SqlCommand(insertTransaksionQuery, connection);

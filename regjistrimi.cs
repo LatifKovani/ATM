@@ -85,6 +85,7 @@ namespace atm
             }
         }
 
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             kyqja kyqja = new kyqja();
