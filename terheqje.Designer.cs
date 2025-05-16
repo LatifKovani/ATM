@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(terheqje));
             textBox1 = new TextBox();
             button1 = new Button();
@@ -36,20 +37,37 @@
             button3 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+=======
+            textBox1 = new TextBox();
+            button1 = new Button();
+            panel1 = new Panel();
+            button3 = new Button();
+            button2 = new Button();
+            panel1.SuspendLayout();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             SuspendLayout();
             // 
             // textBox1
             // 
+<<<<<<< HEAD
             textBox1.Font = new Font("Segoe UI", 19F);
             textBox1.Location = new Point(334, 288);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Shuma";
             textBox1.Size = new Size(448, 41);
+=======
+            textBox1.Location = new Point(264, 164);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(229, 33);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             textBox1.TabIndex = 0;
             // 
             // button1
             // 
+<<<<<<< HEAD
             button1.Anchor = AnchorStyles.None;
             button1.BackColor = Color.FromArgb(180, 190, 201);
             button1.FlatAppearance.BorderSize = 0;
@@ -61,6 +79,12 @@
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(221, 51);
+=======
+            button1.Location = new Point(65, 2);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(144, 46);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             button1.TabIndex = 1;
             button1.Text = "Kthehu";
             button1.UseVisualStyleBackColor = true;
@@ -68,6 +92,7 @@
             // 
             // panel1
             // 
+<<<<<<< HEAD
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.Controls.Add(pictureBox2);
@@ -106,15 +131,46 @@
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
             button3.Size = new Size(221, 51);
+=======
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
+            panel1.Location = new Point(-2, 320);
+            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(808, 50);
+            panel1.TabIndex = 2;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(551, 2);
+            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 46);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             button3.TabIndex = 3;
             button3.Text = "Vazhdo";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+<<<<<<< HEAD
+=======
+            // button2
+            // 
+            button2.Location = new Point(318, 2);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(144, 46);
+            button2.TabIndex = 2;
+            button2.Text = "Anulo";
+            button2.UseVisualStyleBackColor = true;
+            // 
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             // terheqje
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+<<<<<<< HEAD
             ClientSize = new Size(1111, 576);
             Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
@@ -125,6 +181,18 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
+=======
+            ClientSize = new Size(807, 370);
+            Controls.Add(panel1);
+            Controls.Add(textBox1);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "terheqje";
+            Text = "Form1";
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
         }
 
         #endregion
@@ -134,6 +202,9 @@
         private Panel panel1;
         private Button button3;
         private Button button2;
+<<<<<<< HEAD
         private PictureBox pictureBox2;
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
     }
 }

@@ -7,7 +7,11 @@ namespace atm
 {
     public partial class kerko : Form
     {
+<<<<<<< HEAD
         string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
+=======
+        private string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog=ATM;Integrated Security=True;TrustServerCertificate=True";
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
 
         public kerko()
         {
@@ -95,7 +99,56 @@ namespace atm
             }
         }
 
+<<<<<<< HEAD
         
+=======
+        private void CreateMoneyRequest(string kerkuesIban, string marresIban, decimal shuma, string mesazhi)
+        {
+            string query = @"INSERT INTO kerkesat_para 
+                            (iban, iban_marresit, shuma, mesazhi)
+                            VALUES 
+                            (@KerkuesIban, @MarresIban, @Shuma, @Mesazhi)";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@KerkuesIban", kerkuesIban);
+                    command.Parameters.AddWithValue("@MarresIban", marresIban);
+                    command.Parameters.AddWithValue("@Shuma", shuma);
+                    command.Parameters.AddWithValue("@Mesazhi", string.IsNullOrEmpty(mesazhi) ? DBNull.Value : mesazhi);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show($"Kërkesa për {shuma:N2} është dërguar me sukses tek llogaria me IBAN: {marresIban}",
+                                      "Sukses",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information);
+                        ClearForm();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547) // Foreign key violation
+                {
+                    MessageBox.Show("IBAN-i i marrësit nuk ekziston!", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show($"Gabim gjatë dërgimit të kërkesës: {ex.Message}", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Gabim i papritur: {ex.Message}", "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
 
         private void ClearForm()
         {

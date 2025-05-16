@@ -91,6 +91,9 @@ namespace atm
             mesazhet.Show();
             this.Hide();
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
     }
 }

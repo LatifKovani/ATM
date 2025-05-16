@@ -72,6 +72,10 @@ namespace atm
                     try
                     {
                         int rowsAffected = command.ExecuteNonQuery();
+<<<<<<< HEAD
+=======
+                        connection.Close();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
                         MessageBox.Show("Regjistrimi u krye me sukses!");
                         kyqja kyqja = new kyqja();
                         kyqja.Show();

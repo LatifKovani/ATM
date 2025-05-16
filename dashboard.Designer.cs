@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             button1 = new Button();
             button3 = new Button();
@@ -35,10 +36,15 @@
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
+=======
+            button1 = new Button();
+            button3 = new Button();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             SuspendLayout();
             // 
             // button1
             // 
+<<<<<<< HEAD
             button1.Anchor = AnchorStyles.None;
             button1.BackColor = Color.FromArgb(180, 190, 201);
             button1.FlatAppearance.BorderSize = 0;
@@ -52,10 +58,19 @@
             button1.TabIndex = 0;
             button1.Text = "Regjistrohu";
             button1.UseVisualStyleBackColor = false;
+=======
+            button1.Location = new Point(460, 292);
+            button1.Name = "button1";
+            button1.Size = new Size(198, 63);
+            button1.TabIndex = 0;
+            button1.Text = "Regjistrohu";
+            button1.UseVisualStyleBackColor = true;
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             button1.Click += button1_Click;
             // 
             // button3
             // 
+<<<<<<< HEAD
             button3.Anchor = AnchorStyles.None;
             button3.BackColor = Color.FromArgb(180, 190, 201);
             button3.FlatAppearance.BorderSize = 0;
@@ -66,11 +81,17 @@
             button3.Location = new Point(250, 408);
             button3.Name = "button3";
             button3.Size = new Size(261, 77);
+=======
+            button3.Location = new Point(155, 292);
+            button3.Name = "button3";
+            button3.Size = new Size(198, 63);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             button3.TabIndex = 2;
             button3.Text = "Kyçu";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+<<<<<<< HEAD
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
@@ -108,6 +129,18 @@
             Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
+=======
+            // dashboard
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(button3);
+            Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "dashboard";
+            Text = "dashboard";
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             ResumeLayout(false);
         }
 
@@ -115,7 +148,10 @@
 
         private Button button1;
         private Button button3;
+<<<<<<< HEAD
         private PictureBox pictureBox2;
         private Panel panel1;
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
     }
 }

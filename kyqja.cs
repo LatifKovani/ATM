@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+<<<<<<< HEAD
+=======
+using static System.Runtime.InteropServices.JavaScript.JSType;
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
 
 namespace atm
 {
@@ -24,9 +28,15 @@ namespace atm
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+<<<<<<< HEAD
                 connection.Open();
                 try
                 {
+=======
+                try
+                {
+                    connection.Open();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
                     string query = "SELECT emri, iban FROM perdoruesit WHERE iban = @Iban AND pin = @Pin";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -47,22 +57,33 @@ namespace atm
                             else
                             {
                                 MessageBox.Show("Iban ose PIN i gabuar.");
+<<<<<<< HEAD
                                 textBox1.Clear();
                                 textBox2.Clear();
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     MessageBox.Show("Ndodhi nje gabim: " + ex.Message);
+=======
+                    MessageBox.Show("Ndodhi nje gabim: " + ex.Message, "Gabim", MessageBoxButtons.OK, MessageBoxIcon.Error);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
                 }
             }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+<<<<<<< HEAD
         {   
             
+=======
+        {
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             regjistrimi regjistrimi = new regjistrimi();
             regjistrimi.Show();
             this.Hide();

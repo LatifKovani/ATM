@@ -8,7 +8,11 @@ namespace atm
 {
     public partial class historiku : Form
     {
+<<<<<<< HEAD
         string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog = ATM;Integrated Security=True;TrustServerCertificate=True";
+=======
+        private string connectionString = "Data Source=DESKTOP-6QQTGN8;Initial Catalog=ATM;Integrated Security=True;TrustServerCertificate=True";
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
         private string currentUserIban;
 
         public historiku(string userIban)

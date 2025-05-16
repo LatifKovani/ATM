@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(bilanci));
             label1 = new Label();
             label2 = new Label();
@@ -36,22 +37,36 @@
             pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+=======
+            label1 = new Label();
+            label2 = new Label();
+            button1 = new Button();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
+<<<<<<< HEAD
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("SF Pro Regular", 14F);
             label1.Location = new Point(119, 109);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(86, 24);
+=======
+            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(104, 88);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(73, 20);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             label1.TabIndex = 0;
             label1.Text = "Llogaria: ";
             // 
             // label2
             // 
+<<<<<<< HEAD
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
@@ -60,11 +75,20 @@
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(78, 24);
+=======
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(104, 135);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 20);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             label2.TabIndex = 1;
             label2.Text = "Bilanci:";
             // 
             // button1
             // 
+<<<<<<< HEAD
             button1.Anchor = AnchorStyles.None;
             button1.BackColor = Color.FromArgb(180, 190, 201);
             button1.FlatAppearance.BorderSize = 0;
@@ -76,11 +100,19 @@
             button1.Margin = new Padding(5, 4, 5, 4);
             button1.Name = "button1";
             button1.Size = new Size(155, 52);
+=======
+            button1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(108, 193);
+            button1.Margin = new Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(136, 39);
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             button1.TabIndex = 2;
             button1.Text = "Kthehu";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+<<<<<<< HEAD
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
@@ -108,29 +140,47 @@
             pictureBox2.TabIndex = 26;
             pictureBox2.TabStop = false;
             // 
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             // bilanci
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+<<<<<<< HEAD
             ClientSize = new Size(402, 348);
             Controls.Add(panel1);
+=======
+            ClientSize = new Size(366, 290);
+            Controls.Add(button1);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
             Margin = new Padding(4, 3, 4, 3);
             Name = "bilanci";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bilanci";
             Load += bilanci_Load;
+<<<<<<< HEAD
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
+=======
+            ResumeLayout(false);
+            PerformLayout();
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
         }
 
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+<<<<<<< HEAD
         private Panel panel1;
         private PictureBox pictureBox2;
+=======
+>>>>>>> a092db196e4a5a0106bf5b9b99cae4e4311421b7
     }
 }
